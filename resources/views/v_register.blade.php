@@ -33,51 +33,81 @@
 					<img src="images/img-01.png" alt="IMG">
 				</div>
 
-				<form class="login100-form validate-form" method="POST" action="{{ route('login') }}">
+				<form class="login100-form validate-form" method="POST" action="{{ route('register') }}">
 					@csrf
 					<span class="login100-form-title">
 						Member Login
 					</span>
 
+					<div class="wrap-input100 validate-input" data-validate = "Name is required">
+						<input class="input100" id="name" type="text" name="name" placeholder="Name">
+						@error('name')
+							<script>
+								$(function () { //ready
+								toastr.error("{{$message}}");
+								});
+							</script>
+						@enderror
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-user" aria-hidden="true"></i>
+						</span>
+					</div>
+
 					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-						<input class="input100 form-control @error('email') is-invalid @enderror" id="email" type="text"  name="email" placeholder="Email">
+						<input class="input100" id="email" type="text" name="email" placeholder="Email">
+						@error('email')
+							<script>
+								$(function () { //ready
+								toastr.error("{{$message}}");
+								});
+							</script>
+						@enderror
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-envelope" aria-hidden="true"></i>
 						</span>
-						@error('email')
-							<script>
-								$(function () { //ready
-								  toastr.error("{{$message}}");
-								});
-							</script>
-						@enderror
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate = "Password is required">
-						<input class="input100 form-control @error('password') is-invalid @enderror" type="password" id="password" name="password" placeholder="Password">
+						<input class="input100" id="password" name="password" type="password" placeholder="Password">
+						@error('password')
+							<script>
+								$(function () { //ready
+								toastr.error("{{$message}}");
+								});
+							</script>
+						@enderror
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-lock" aria-hidden="true"></i>
 						</span>
-						@error('password')
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate = "Password Confirmation is required">
+						<input class="input100" id="password-confirm" name="password_confirmation" type="password" placeholder="Password Confirmation">
+						@error('password-confirm')
 							<script>
 								$(function () { //ready
-								  toastr.error("{{$message}}");
+								toastr.error("{{$message}}");
 								});
 							</script>
 						@enderror
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-lock" aria-hidden="true"></i>
+						</span>
 					</div>
 					
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn">
-							Login
+							Register
 						</button>
 					</div>
 
 					<div class="text-center p-t-136">
-						<a class="txt2" href="/register">
-							Create your Account
+						<a class="txt2" href="/login">
+							Login to your account
 							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
 						</a>
 					</div>

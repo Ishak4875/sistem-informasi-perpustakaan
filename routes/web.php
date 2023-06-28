@@ -22,6 +22,6 @@ Route::get('/buku/edit/{id_buku}',[BukuController::class,'displayPageEditBuku'])
 Route::post('/buku/update/{id_buku}',[BukuController::class,'updateBuku']);
 Route::get('/buku/delete/{id_buku}',[BukuController::class,'deleteBuku']);
 Route::get('/buku/detail/{id_buku}',[BukuController::class,'displayPageDetailBuku']);
-Route::get('login/', function () {
-    return view('v_login');
-});
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
