@@ -7,6 +7,7 @@ use App\Models\BukuModel;
 
 class BukuController extends Controller
 {
+    private $BukuModel;
     public function __construct()
     {
         $this->middleware('auth');
@@ -26,7 +27,7 @@ class BukuController extends Controller
         return view('v_add');
     }
 
-    public function insertBuku()
+    public function addBuku()
     {
         Request()->validate([
             'kode_buku'=>'required|unique:tbl_buku,kode_buku',
@@ -57,7 +58,7 @@ class BukuController extends Controller
                 'penulis_buku'=>Request()->penulis_buku,
                 'foto_buku'=>$fileName
             ];
-            $this->BukuModel->addBuku($data);
+            $this->BukuModel->insertBuku($data);
             return redirect()->route('daftar buku')->with('success','Data Berhasil Ditambahkan !!!');
         } catch (\Exception $ex) {
             return redirect()->route('daftar buku')->with('error',"Data Gagal Ditambahkan");
@@ -84,7 +85,7 @@ class BukuController extends Controller
         return view('v_edit',$data);
     }
 
-    public function updateBuku(Request $request)
+    public function editBuku(Request $request)
     {
         $id_buku = $request->id_buku;
         $kode_buku = $request->kode_buku;
@@ -146,7 +147,7 @@ class BukuController extends Controller
         }
     }
 
-    public function deleteBuku($id_buku)
+    public function removeBuku($id_buku)
     {
         try {
             $buku = $this->BukuModel->getDetailBuku($id_buku);

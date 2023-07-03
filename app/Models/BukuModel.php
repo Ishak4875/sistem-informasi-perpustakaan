@@ -21,7 +21,7 @@ class BukuModel extends Model
             ->first();
     }
 
-    public function addBuku($data)
+    public function insertBuku($data)
     {
         DB::table('tbl_buku')
             ->insert($data);

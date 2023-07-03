@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BukuController;
-
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,10 +17,10 @@ use App\Http\Controllers\BukuController;
 
 Route::get('/',[BukuController::class,'getAllData'])->name('daftar buku');
 Route::get('/buku/add',[BukuController::class,'displayPageAddBuku']);
-Route::post('/buku/insert',[BukuController::class,'insertBuku']);
+Route::post('/buku/insert',[BukuController::class,'addBuku']);
 Route::get('/buku/edit/{id_buku}',[BukuController::class,'displayPageEditBuku']);
-Route::post('/buku/update/{id_buku}',[BukuController::class,'updateBuku']);
-Route::get('/buku/delete/{id_buku}',[BukuController::class,'deleteBuku']);
+Route::post('/buku/update/{id_buku}',[BukuController::class,'editBuku']);
+Route::get('/buku/delete/{id_buku}',[BukuController::class,'removeBuku']);
 Route::get('/buku/detail/{id_buku}',[BukuController::class,'displayPageDetailBuku']);
 Auth::routes();
 
